@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
-use App\Models\Doctor;
+use App\Models\Service;
+use App\Models\Book;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -17,40 +17,32 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $books = Book::all();
+        $services = Service::all();
         return view('home');
     }
 
-    public function allDoctors()
+    public function allBooks()
     {
-        $doctors = Doctor::all();
-        return view('alldoctors',compact('doctors'));
+        $books = Book::all();
+        return view('allbooks',compact('books'));
     }
 
-    public function showDoctor(Request $r)
+    public function showBook(Request $r)
     {
-        $doctor = Doctor::whereId($r->id)->first();
-        return view('showdoctor',compact('doctor'));
+        $book = Book::whereId($r->id)->first();
+        return view('showbook',compact('book'));
     }
 
-    public function showDoctorTable(Request $r)
-    {
-        $doctor = Doctor::whereId($r->id)->first();
-        return view('doctortable',compact('doctor'));
-    }
 
-    public function articles()
-    {
-        $articles = Article::all();
-        return view('articles',compact('articles'));
-    }
+
+
 
     public function search()
     {
-        $doctors = Doctor::all();
-        return view('search',compact('doctors'));
+        $books = Book::all();
+        return view('search',compact('books'));
     }
 
-    public function contactus() {
-        return view('contactus');
-    }
+
 }

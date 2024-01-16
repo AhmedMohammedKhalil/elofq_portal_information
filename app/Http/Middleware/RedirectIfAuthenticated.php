@@ -23,17 +23,6 @@ class RedirectIfAuthenticated
             return redirect('admin/profile');
         }
 
-        if ($guard == "doctor" && Auth::guard($guard)->check()) {
-            return redirect('doctor/profile');
-        }
-
-        if ($guard == "nurse" && Auth::guard($guard)->check()) {
-            return redirect('nurse/profile');
-        }
-
-        if ($guard == "patient" && Auth::guard($guard)->check()) {
-            return redirect('patient/profile');
-        }
         if (Auth::guard($guard)->check()) {
             return redirect()->route('home');
         }

@@ -22,24 +22,7 @@ class Authenticate extends Middleware
             return redirect('/');
         }
 
-        if ($request->is('doctor') || $request->is('doctor/*')) {
-            if (Auth::guard('doctor')->check())
-                return $next($request);
-            return redirect('/');
-        }
 
-
-        if ($request->is('nurse') || $request->is('nurse/*')) {
-            if (Auth::guard('nurse')->check())
-                return $next($request);
-            return redirect('/');
-        }
-
-        if ($request->is('patient') || $request->is('patient/*')) {
-            if (Auth::guard('patient')->check())
-                return $next($request);
-            return redirect('/');
-        }
         return $next($request);
     }
 }

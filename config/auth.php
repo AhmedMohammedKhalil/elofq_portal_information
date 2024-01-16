@@ -40,18 +40,7 @@ return [
             'driver' => 'session',
             'provider' => 'admins',
         ],
-        'doctor' => [
-            'driver' => 'session',
-            'provider' => 'doctors',
-        ],
-        'nurse' => [
-            'driver' => 'session',
-            'provider' => 'nurses',
-        ],
-        'patient' => [
-            'driver' => 'session',
-            'provider' => 'patients',
-        ],
+
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
@@ -78,18 +67,6 @@ return [
     */
 
     'providers' => [
-        'doctors' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Doctor::class,
-        ],
-        'patients' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Patient::class,
-        ],
-        'nurses' => [
-            'driver' => 'eloquent',
-            'model' => App\Models\Nurse::class,
-        ],
         'admins' => [
             'driver' => 'eloquent',
             'model' => App\Models\Admin::class,
