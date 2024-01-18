@@ -12,6 +12,10 @@ class SlidersController extends Controller
         return view('admins.sliders.index',['sliders'=>Sliders::all()]);
     }
 
+    public function create()
+    {
+        return view('admins.sliders.create');
+    }
 
 
     public function edit(Request $r)

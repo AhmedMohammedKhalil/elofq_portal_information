@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Abouts;
-use Database\Seeders\AboutsSeeder;
 use Illuminate\Http\Request;
 
 class AboutsController extends Controller
@@ -12,13 +11,6 @@ class AboutsController extends Controller
     {
         return view('admins.abouts.index',['abouts'=>Abouts::all()]);
     }
-
-
-
-    /**
-     * Display the specified resource.
-     */
-
 
     public function edit(Request $r)
     {

@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Patient;
+use App\Models\Book;
+use App\Models\Sliders;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -15,8 +16,9 @@ class AdminController extends Controller
     public function dashboard() {
 
         $page_name = 'الإحصائيات';
-        $patient_count = Patient::all()->count();
-        return view('admins.dashboard',compact('page_name','patient_count'));
+        $books_count = Book::all()->count();
+        $sliders_count = Sliders::all()->count();
+        return view('admins.dashboard',compact('page_name','books_count','sliders_count'));
     }
 
     public function profile() {

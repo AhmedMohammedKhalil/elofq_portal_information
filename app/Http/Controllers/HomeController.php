@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Abouts;
 use App\Models\Service;
 use App\Models\Book;
+use App\Models\Sliders;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -17,16 +19,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $books = Book::all();
-        $services = Service::all();
-        return view('home');
+        $books = Book::Limit(10)->get();
+        $sliders = Sliders::all();
+        $service = Service::limit(1)->first();
+        $about = Abouts::Limit(1)->first();
+        return view('home',compact('books','sliders','about','service'));
     }
 
-    public function allBooks()
-    {
-        $books = Book::all();
-        return view('allbooks',compact('books'));
-    }
+
 
     public function showBook(Request $r)
     {
@@ -40,8 +40,7 @@ class HomeController extends Controller
 
     public function search()
     {
-        $books = Book::all();
-        return view('search',compact('books'));
+        return view('search');
     }
 
 

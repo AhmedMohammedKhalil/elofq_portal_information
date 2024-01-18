@@ -12,7 +12,7 @@ class ServiceController extends Controller
      */
     public function index()
     {
-        return view('admins.services.index',['Services'=>Service::all()]);
+        return view('admins.services.index',['services'=>Service::all()]);
     }
 
     /**
@@ -24,13 +24,8 @@ class ServiceController extends Controller
     }
 
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Service $Service)
-    {
-        //
-    }
+
+
 
     public function edit(Request $r)
     {

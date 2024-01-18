@@ -12,8 +12,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        $books = auth('patient')->user()->books;
-        return view('patients.books.index',compact($books));
+        $books = Book::all();
+        return view('admin.books.index',compact($books));
     }
 
     /**
@@ -21,27 +21,30 @@ class BookController extends Controller
      */
     public function create()
     {
-        return view('patients.books.create');
+        return view('admin.books.create');
     }
 
 
     /**
      * Display the specified resource.
      */
-    public function show()
+    public function show(Request $r)
     {
-        //
+        $book = Book::find($r->id);
+        return view('admin.books.show',compact($book));
     }
+
 
     public function edit(Request $r)
     {
-        return view('patients.books.edit',['book_id'=>$r->id]);
+        return view('admin.books.edit',['book_id'=>$r->id]);
     }
 
 
 
     public function delete(Request $r)
     {
-        //delete
+        Book::whereId($r->id)->delete();
+        return redirect()->route('admin.books.index');
     }
 }

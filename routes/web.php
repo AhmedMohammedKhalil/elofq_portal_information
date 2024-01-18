@@ -58,6 +58,7 @@ Route::middleware(['auth:admin'])->name('admin.')->prefix('admin')->group(functi
 
     Route::prefix('/slider')->name('slider.')->group(function () {
         Route::get('/index', 'SlidersController@index')->name('index');
+        Route::get('/create', 'SlidersController@create')->name('create');
         Route::get('/edit', 'SlidersController@edit')->name('edit');
         Route::delete('/delete', 'SlidersController@delete')->name('delete');
     });
