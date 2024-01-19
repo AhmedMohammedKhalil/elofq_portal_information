@@ -14,7 +14,7 @@ class Search extends Component
         $this->type_id = 1;
     }
 
-    public function search() {
+    public function makeSearch() {
         if($this->search == '')
             $this->books = Book::all();
         else {

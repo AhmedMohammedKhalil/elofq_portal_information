@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\File;
 class Add extends Component
 {
 
-    public $title, $content, $image,$style;
+    public $title, $content, $image;
     use WithFileUploads;
     protected $messages = [
         'required' => 'ممنوع ترك الحقل فارغاَ',
@@ -24,7 +24,6 @@ class Add extends Component
     protected $rules = [
         'title' => ['required', 'max:255'],
         'content' => ['required', 'max:255'],
-        'style' => ['required'],
         'image' => ['image', 'mimes:jpeg,jpg,png', 'max:2048']
     ];
 
@@ -37,17 +36,16 @@ class Add extends Component
 
     public function add()
     {
-        $this->style = $this->style ?? '1';
         $validatedata = $this->validate();
         $imagename = $this->image->getClientOriginalName();
         $slider = Sliders::create(array_merge($validatedata, ['image' => $imagename]));
-        $dir = public_path('assets/img/sliders/' . $slider->id);
+        $dir = public_path('img/sliders/' . $slider->id);
         if (file_exists($dir))
             File::deleteDirectories($dir);
         else
             mkdir($dir);
         $this->image->storeAs('sliders/' . $slider->id, $imagename);
-        File::deleteDirectory(public_path('assets/img/livewire-tmp'));
+        File::deleteDirectory(public_path('img/livewire-tmp'));
 
         session()->flash('message', "تم إتمام العملية بنجاح");
         return redirect()->route('admin.slider.index');

@@ -12,14 +12,13 @@ class Edit extends Component
 
     use WithFileUploads;
 
-    public  $content, $image, $slider,$title,$style;
+    public  $content, $image, $slider,$title;
 
     public function mount($slider_id)
     {
         $this->slider = Sliders::find($slider_id);
         $this->content = $this->slider->content;
         $this->title = $this->slider->title;
-        $this->style = $this->slider->style;
 
     }
     protected $messages = [
@@ -34,7 +33,6 @@ class Edit extends Component
 
     protected $rules = [
         'content' => ['required', 'max:255'],
-        'style' => ['required'],
         'title' => ['required', 'max:255'],
     ];
 
@@ -53,13 +51,13 @@ class Edit extends Component
             $this->updatedImage();
             $imagename = $this->image->getClientOriginalName();
             $this->slider->update(array_merge($validatedata, ['image' => $imagename]));
-            $dir = public_path('assets/img/sliders/'.$this->slider->id);
+            $dir = public_path('img/sliders/'.$this->slider->id);
             if (file_exists($dir))
                 File::deleteDirectories($dir);
             else
                 mkdir($dir);
             $this->image->storeAs('sliders/'.$this->slider->id, $imagename);
-            File::deleteDirectory(public_path('assets/img/livewire-tmp'));
+            File::deleteDirectory(public_path('img/livewire-tmp'));
         }
         session()->flash('message', "تم إتمام العملية بنجاح");
         return redirect()->route('admin.slider.index');

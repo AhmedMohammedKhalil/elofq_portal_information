@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Admin\Article;
+namespace App\Http\Livewire\Admin\Book;
 
 use App\Models\Book;
 use Livewire\Component;

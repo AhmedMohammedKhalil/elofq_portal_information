@@ -11,6 +11,6 @@ class Abouts extends Model
     public $table = 'abouts';
 
     protected $fillable = [
-        'content', 'title','image',
+        'content', 'title','image','heading',
     ];
 }

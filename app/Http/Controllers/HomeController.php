@@ -21,9 +21,10 @@ class HomeController extends Controller
     {
         $books = Book::Limit(10)->get();
         $sliders = Sliders::all();
-        $service = Service::limit(1)->first();
+        $services = Service::where('type','!=','main')->get();
+        $service = Service::where('type','main')->first();
         $about = Abouts::Limit(1)->first();
-        return view('home',compact('books','sliders','about','service'));
+        return view('home',compact('books','sliders','about','services','service'));
     }
 
 

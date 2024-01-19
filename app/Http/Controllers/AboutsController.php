@@ -17,14 +17,4 @@ class AboutsController extends Controller
         return view('admins.abouts.edit',['about_id'=>$r->id]);
     }
 
-    public function editMain(Request $r)
-    {
-        return view('admins.abouts.editmain',['about_id'=>$r->id]);
-    }
-
-    public function delete(Request $r)
-    {
-       Abouts::whereId($r->id)->delete();
-       return redirect()->route('admin.about.index');
-    }
 }

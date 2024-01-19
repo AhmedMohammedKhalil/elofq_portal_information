@@ -1,5 +1,22 @@
 @extends('layouts.app')
-
+@push('css')
+    <style>
+        .event-img .main-img{
+            border-radius: 50%;
+            margin: auto;
+            display: block;
+            margin-top: 78px;
+            height: 400px;
+            width: 400px;
+        }
+        .event-area-two.event-area-style .single-tutor {
+            border-radius: 10%;
+        }
+        .event-area-two.event-area-style .single-tutor.three {
+            margin-top: 0px;
+        }
+    </style>
+@endpush
 @section('main')
 
     <section class="feedback-area f5f6fa-bg-color" style="margin-top: 150px">
@@ -17,7 +34,7 @@
 
     <section class="banner-area-two pt-100 pb-70" id="about">
         <div class="section-title">
-            <h2>من نحن</h2>
+            <h2>{{ $about->heading }}</h2>
             <img src="{{ asset('img/section-title-shape.png') }}" alt="Image" />
         </div>
         <div class="d-table">
@@ -84,13 +101,13 @@
     <section class="event-area-two event-area-style ptb-100" id="services">
         <div class="container">
             <div class="section-title" style="text-align: center;margin:0 auto 30px">
-                <h2>خداماتنا</h2>
+                <h2>{{ $service->content }}</h2>
                 <img src="{{ asset('img/section-title-shape.png') }}" alt="Image" />
             </div>
             <div class="row align-items-center">
                 <div class="col-lg-6">
                     <div class="event-img">
-                        <img src="{{ asset('img/event-img/event-img-5.png') }}" alt="Image">
+                        <img class="main-img" src="{{ asset('img/services/'.$service->id.'/'.$service->image) }}" alt="Image">
                         <div class="event-shape-1 rotated">
                             <img src="{{ asset('img/event-img/event-shape-1.png') }}" alt="Image">
                         </div>
@@ -102,34 +119,14 @@
                 <div class="col-lg-6">
 
                     <div class="row">
-                        <div class="col-lg-6 col-sm-6">
-                            <div class="single-tutor one">
-                                <img style="height: 50px;width:50px" src="{{ asset('img/services/1/slider-1.jpg') }}" alt="">
-                                <h3>Face to face learning</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
+                        @foreach($services as $service)
+                            <div class="col-lg-6 col-sm-6">
+                                <div class="single-tutor {{ $service->type }}">
+                                    <img style="height: 50px;width:50px" src="{{ asset('img/services/'.$service->id.'/'.$service->image) }}" alt="">
+                                    <p>{{ $service->content }}</p>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-lg-6 col-sm-6">
-                            <div class="single-tutor two">
-                                <img style="height: 50px;width:50px" src="{{ asset('img/services/1/slider-1.jpg') }}" alt="">
-                                <h3>Experienced instructor</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-sm-6">
-                            <div class="single-tutor three">
-                                <img style="height: 50px;width:50px" src="{{ asset('img/services/1/slider-1.jpg') }}" alt="">
-                                <h3>International certificate</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                            </div>
-                        </div>
-                        <div class="col-lg-6 col-sm-6">
-                            <div class="single-tutor four">
-                                <img style="height: 50px;width:50px" src="{{ asset('img/services/1/slider-1.jpg') }}" alt="">
-                                <h3>Online support 24/7</h3>
-                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</p>
-                            </div>
-                        </div>
+                        @endforeach
                     </div>
                 </div>
             </div>

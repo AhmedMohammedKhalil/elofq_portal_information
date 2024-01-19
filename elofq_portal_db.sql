@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 19, 2024 at 01:28 PM
+-- Generation Time: Jan 19, 2024 at 03:28 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -29,6 +29,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `abouts` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `heading` text NOT NULL,
   `title` text NOT NULL,
   `content` text NOT NULL,
   `image` text DEFAULT NULL,
@@ -40,8 +41,8 @@ CREATE TABLE `abouts` (
 -- Dumping data for table `abouts`
 --
 
-INSERT INTO `abouts` (`id`, `title`, `content`, `image`, `created_at`, `updated_at`) VALUES
-(1, 'أ.نورة فهد العجمى', 'أختصاص مكتبات', 'about.jpg', '2024-01-19 06:16:26', '2024-01-19 06:16:26');
+INSERT INTO `abouts` (`id`, `heading`, `title`, `content`, `image`, `created_at`, `updated_at`) VALUES
+(1, 'من نحن', 'أ.نورة فهد العجمى', 'أختصاص مكتبات', 'about.jpg', '2024-01-19 06:16:26', '2024-01-19 06:16:26');
 
 -- --------------------------------------------------------
 
@@ -141,12 +142,23 @@ CREATE TABLE `personal_access_tokens` (
 
 CREATE TABLE `services` (
   `id` int(10) UNSIGNED NOT NULL,
-  `title` varchar(191) NOT NULL,
   `image` varchar(191) DEFAULT NULL,
   `content` text NOT NULL,
+  `type` varchar(50) DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `services`
+--
+
+INSERT INTO `services` (`id`, `image`, `content`, `type`, `created_at`, `updated_at`) VALUES
+(1, 'service1.jpg', 'خدامتنا', 'main', '2024-01-19 13:22:36', '2024-01-19 13:22:36'),
+(2, 'service2.jpg', 'مكتبة للفنون والوسائط المتعددة والمواد السمعية والبصرية', 'one', '2024-01-19 13:22:36', '2024-01-19 13:22:36'),
+(3, 'service3.jpg', 'مركزًا للتميز في إنتاج ونشر المعرفة', 'two', '2024-01-19 13:24:43', '2024-01-19 13:24:43'),
+(4, 'service4.jpg', 'مكتبة الكتب النادرة والمجموعات الخاصة', 'three', '2024-01-19 13:24:43', '2024-01-19 13:24:43'),
+(5, 'service5.jpg', 'سهولة البحث عن الكتب المميزة والنادرة', 'four', '2024-01-19 13:28:50', '2024-01-19 13:28:50');
 
 -- --------------------------------------------------------
 
@@ -168,9 +180,9 @@ CREATE TABLE `sliders` (
 --
 
 INSERT INTO `sliders` (`id`, `title`, `content`, `image`, `created_at`, `updated_at`) VALUES
-(1, 'title1', 'content', 'slider-1.jpg', '2024-01-19 05:26:20', '2024-01-19 05:26:20'),
-(2, 'title2', 'content2', 'slider-2.jpg', '2024-01-19 05:26:20', '2024-01-19 05:26:20'),
-(3, 'title3', 'content3', 'slider-3.jpg', '2024-01-19 05:26:20', '2024-01-19 05:26:20');
+(1, 'بوابة الأفق للمعلومات', 'بوابة للتميز في إنتاج ونشر المعرفة', 'slider-1.jpg', '2024-01-19 05:26:20', '2024-01-19 05:26:20'),
+(2, 'مكتبة غزية بنت جابر', 'مكتبة الكتب النادرة والمجموعات الخاصة', 'slider-2.jpg', '2024-01-19 05:26:20', '2024-01-19 05:26:20'),
+(3, 'مكتبة غزية بنت جابر', 'موقعنا لسهولة البحث عن الكتب المميزة والنادرة', 'slider-3.jpg', '2024-01-19 05:26:20', '2024-01-19 05:26:20');
 
 --
 -- Indexes for dumped tables
@@ -260,7 +272,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `sliders`

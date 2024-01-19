@@ -38,7 +38,7 @@ return [
 
         'public' => [
             'driver' => 'local',
-            'root' => public_path('assets/images'),
+            'root' => public_path('img'),
             'visibility' => 'public',
             'throw' => false,
         ],
