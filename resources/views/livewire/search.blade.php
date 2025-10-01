@@ -25,7 +25,7 @@
                                     <div class="col-lg-6 col-sm-6">
                                         <div class="form-group">
                                             <label>ابحث هنا</label>
-                                            <input class="form-control" type="text" name="search"
+                                            <input style="line-height: 4" class="form-control" type="text" name="search"
                                                 wire:model.lazy='search' id="search" placeholder="ابحث هنا"/>
                                             @error('search')
                                                 <span class="text-danger error">{{ $message }}</span>

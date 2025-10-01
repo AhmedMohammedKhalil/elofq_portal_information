@@ -20,8 +20,8 @@ class Search extends Component
         else {
             if($this->type_id == 1 ) {
                 $this->books = Book::where('title','like','%'.$this->search.'%')->get();
-            } else if ($this->type_id == 2 ) {
-                $this->keywords = explode(',',$this->search);
+            } else if ($this->type_id == 3 ) {
+                $this->keywords = explode('-',$this->search);
                 $collection = DB::Table('books')->select('*');
                 foreach($this->keywords as $key => $keyword) {
                     if($key == 0) {
@@ -29,8 +29,9 @@ class Search extends Component
                     }
                     $collection->orWhere('subject','like','%'.$keyword.'%');
                 }
-                $this->books = $collection->unique('id')->get();
-            } else if ($this->type_id == 3) {
+                $this->books = $collection->get();
+            } else if ($this->type_id == 2) {
+                //dd($this->type_id);
                 $this->books = Book::where('author','like','%'.$this->search.'%')->get();
             }
         }

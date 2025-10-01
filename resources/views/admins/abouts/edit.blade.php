@@ -1,7 +1,5 @@
-@extends('admins.layout')
-@push('title')
-     تعديل من نحن
-@endpush
-@section('content')
+@extends('admins.layout',['page_name'=> 'تعديل من نحن'])
+
+@section('section')
     <livewire:admin.abouts.edit :about_id="$about_id" />
 @endsection

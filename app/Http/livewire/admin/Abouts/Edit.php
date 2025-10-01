@@ -59,9 +59,8 @@ class Edit extends Component
             $this->about->update(array_merge($validatedata, ['image' => $imagename]));
             $dir = public_path('img/abouts/');
             if (file_exists($dir))
-                File::deleteDirectories($dir);
-            else
-                mkdir($dir);
+                File::deleteDirectory($dir);
+            mkdir($dir);
             $this->image->storeAs('abouts/', $imagename);
             File::deleteDirectory(public_path('img/livewire-tmp'));
         }

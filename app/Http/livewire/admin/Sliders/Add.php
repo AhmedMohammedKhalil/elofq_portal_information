@@ -41,9 +41,8 @@ class Add extends Component
         $slider = Sliders::create(array_merge($validatedata, ['image' => $imagename]));
         $dir = public_path('img/sliders/' . $slider->id);
         if (file_exists($dir))
-            File::deleteDirectories($dir);
-        else
-            mkdir($dir);
+            File::deleteDirectory($dir);
+        mkdir($dir);
         $this->image->storeAs('sliders/' . $slider->id, $imagename);
         File::deleteDirectory(public_path('img/livewire-tmp'));
 

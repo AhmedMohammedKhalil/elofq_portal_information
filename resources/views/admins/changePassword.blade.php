@@ -2,3 +2,4 @@
 @section('section')
     <livewire:admin.change-password />
 @endsection
+

@@ -33,10 +33,7 @@ Route::middleware(['auth:admin'])->name('admin.')->prefix('admin')->group(functi
 
     Route::prefix('/service')->name('service.')->group(function () {
         Route::get('/index', 'ServiceController@index')->name('index');
-        Route::get('/create', 'ServiceController@create')->name('create');
-        Route::get('/show', 'ServiceController@show')->name('show');
         Route::get('/edit', 'ServiceController@edit')->name('edit');
-        Route::delete('/delete', 'ServiceController@delete')->name('delete');
     });
 
 
@@ -52,8 +49,6 @@ Route::middleware(['auth:admin'])->name('admin.')->prefix('admin')->group(functi
     Route::prefix('/about')->name('about.')->group(function () {
         Route::get('/index', 'AboutsController@index')->name('index');
         Route::get('/edit', 'AboutsController@edit')->name('edit');
-        Route::get('/editmain', 'AboutsController@editMain')->name('editmain');
-        Route::delete('/delete', 'AboutsController@delete')->name('delete');
     });
 
     Route::prefix('/slider')->name('slider.')->group(function () {

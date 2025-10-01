@@ -12,7 +12,7 @@ class Edit extends Component
 
     use WithFileUploads;
 
-    public  $content,$title,$image, $service;
+    public  $content,$image, $service;
 
     public function mount($service_id)
     {
@@ -53,9 +53,8 @@ class Edit extends Component
             $this->service->update(array_merge($validatedata, ['image' => $imagename]));
             $dir = public_path('img/services/'.$this->service->id);
             if (file_exists($dir))
-                File::deleteDirectories($dir);
-            else
-                mkdir($dir);
+                File::deleteDirectory($dir);
+            mkdir($dir);
             $this->image->storeAs('services/'.$this->service->id, $imagename);
             File::deleteDirectory(public_path('img/livewire-tmp'));
         }

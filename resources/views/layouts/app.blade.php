@@ -103,6 +103,13 @@
             background-color: #f5f6fa;
             opacity: 0.5;
         }
+
+        @media only screen and (max-width: 991px) {
+            .page-title-area, .feedback-area{
+                margin-top: 70px !important
+            }
+        }
+
     </style>
     @stack('css')
 </head>
@@ -125,23 +132,30 @@
     </div>
     <div class="navbar-area navbar-area-two">
 
+        <div class="mobile-nav">
+            <a href="{{ route('home') }}" class="logo" style="top:11px">
+                <img style="height: 50px;width:70px" src="{{ asset('img/logo1.jpg') }}" class="main-logo" alt="Logo" />
+            </a>
+        </div>
+
         <div class="main-nav">
             <div class="container-fluid">
                 <nav class="navbar navbar-expand-md">
+
                     <a class="navbar-brand" href="{{ route('home') }}" style="max-width: 130px">
-                        <img style="height: 80px;width:100px" src="{{ asset('img/logo1.jpg') }}" class="main-logo" alt="Logo" />
+                        <img style="height: 80px;width:100px" src="{{ asset('img/logo2.jpg') }}" class="main-logo" alt="Logo" />
                     </a>
 
-                    <div class="collapse navbar-collapse mean-menu m-auto flex-column">
+                    <div class="collapse navbar-collapse m-auto flex-column">
 
                         <h4>بوابة الأفق للمعلومات</h4>
                         <h4>مكتبة غزية بنت جابر</h4>
 
                     </div>
-
                     <a class="navbar-brand" href="{{ route('home') }}" style="max-width: 130px">
-                        <img style="height: 80px;width:100px" src="{{ asset('img/logo2.jpg') }}" class="main-logo" alt="Logo" />
+                        <img style="height: 80px;width:100px" src="{{ asset('img/logo1.jpg') }}" class="main-logo" alt="Logo" />
                     </a>
+
                 </nav>
             </div>
         </div>
@@ -188,8 +202,6 @@
                     </div>
                 </nav>
             </div>
-        </div>
-        <div class="mobile-nav">
         </div>
 
     </div>

@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Book extends Model
 {
@@ -21,8 +22,9 @@ class Book extends Model
         'publishing_house',
         'publishing_location',
         'publishing_year',
-        'peinter_number',
-        'subject'
+        'printer_number',
+        'subject',
+        'image'
     ];
 
 

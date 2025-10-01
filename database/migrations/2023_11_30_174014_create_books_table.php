@@ -16,14 +16,16 @@ return new class extends Migration
             $table->string('title');
             $table->string('author')->nullable();
             $table->string('isbn')->nullable();
+            $table->string('image')->nullable();
             $table->string('classification_number');
-            $table->string('pages_number');
-            $table->string('book_height');
+            $table->string('pages_number')->nullable();
+            $table->string('book_height')->nullable();
             $table->text('publishing_house')->nullable();
             $table->text('publishing_location')->nullable();
             $table->text('publishing_year')->nullable();
-            $table->text('peinter_number');
+            $table->text('printer_number')->nullable();
             $table->text('subject');
+
             $table->timestamps();
         });
     }

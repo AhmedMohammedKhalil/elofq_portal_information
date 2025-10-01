@@ -85,19 +85,23 @@
             </div>
         </div>
     </section>
-
+    @if (count($books) > 0)
     <section class="courses-area-three ptb-100 jarallax" data-jarallax='{"speed": 0.3}'>
         <div class="container">
             <div class="section-title white-title">
                 <h2>جميع الكتب</h2>
                 <img src="{{ asset('img/section-title-shape.png') }}" alt="Image" />
             </div>
+            @if(count($books) > 3)
             <div class="courses-slider-three owl-theme owl-carousel">
                 @include('allbooks')
             </div>
+            @else
+                @include('books')
+            @endif
         </div>
     </section>
-
+    @endif
     <section class="event-area-two event-area-style ptb-100" id="services">
         <div class="container">
             <div class="section-title" style="text-align: center;margin:0 auto 30px">
@@ -132,5 +136,8 @@
             </div>
         </div>
     </section>
-    @include('allmodels')
+
+    @if (count($books) > 0)
+        @include('allmodals')
+    @endif
 @endsection

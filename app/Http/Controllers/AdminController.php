@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Service;
 use App\Models\Sliders;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +19,8 @@ class AdminController extends Controller
         $page_name = 'الإحصائيات';
         $books_count = Book::all()->count();
         $sliders_count = Sliders::all()->count();
-        return view('admins.dashboard',compact('page_name','books_count','sliders_count'));
+        $services_count = Service::all()->count();
+        return view('admins.dashboard',compact('page_name','books_count','sliders_count','services_count'));
     }
 
     public function profile() {

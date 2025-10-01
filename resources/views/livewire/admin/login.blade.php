@@ -1,27 +1,41 @@
-<section class="login-area" style="min-height: calc(100vh - 167px);height:0">
-    <div class="d-table" style="">
-        <div class="d-table-cell">
-            <div class="login-form">
-                <h3>تسجيل دخول</h3>
-
+<section class="user-area-style ptb-100">
+    <div class="container">
+        <div class="log-in-area">
+            <div class="section-title">
+                <h2>تسجيل الدخول</h2>
+            </div>
+            <div class="contact-form-action">
                 <form wire:submit.prevent='login'>
-                    @if (session()->has('error'))
-                        <div class="alert alert-danger">
-                            {{ session('error') }}
+                    <div class="row">
+                        @if (session()->has('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>البريد الألكترونى</label>
+                                <input class="form-control" type="email" name="email" wire:model.lazy='email'
+                                    id="email" />
+                                @error('email')
+                                    <span class="text-danger error">{{ $message }}</span>
+                                @enderror
+                            </div>
                         </div>
-                    @endif
-                    <div class="form-group">
-                        <input type="email" wire:model.lazy='email' id="email" class="form-control" placeholder="الإيميل">
-                        @error('email') <span class="text-danger error">{{ $message }}</span>@enderror
-
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>كلمة السر</label>
+                                <input class="form-control" type="password" name="password" wire:model.lazy='password'
+                                    id="password" />
+                                @error('password')
+                                    <span class="text-danger error">{{ $message }}</span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <button class="default-btn" type="submit">سجل الأن</button>
+                        </div>
                     </div>
-
-                    <div class="form-group">
-                        <input type="password" wire:model.lazy='password' id="password" class="form-control" placeholder="كلمة السر">
-                        @error('password') <span class="text-danger error">{{ $message }}</span>@enderror
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">سجل الأن</button>
                 </form>
             </div>
         </div>

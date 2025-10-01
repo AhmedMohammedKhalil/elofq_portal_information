@@ -10,7 +10,7 @@ class Edit extends Component
 
     public $title,$author,$isbn,$classification_number,$pages_number,
     $book_height,$publishing_house,$publishing_location,$publishing_year,
-    $peinter_number,$subject,$book;
+    $printer_number,$subject,$book;
 
 
     public function mount($book_id)
@@ -25,7 +25,7 @@ class Edit extends Component
         $this->publishing_house = $this->book->publishing_house;
         $this->publishing_location = $this->book->publishing_location;
         $this->publishing_year = $this->book->publishing_year;
-        $this->peinter_number = $this->book->peinter_number;
+        $this->printer_number = $this->book->printer_number;
         $this->subject = $this->book->subject;
     }
 
@@ -37,18 +37,14 @@ class Edit extends Component
     protected $rules = [
         'title' => ['required'],
         'classification_number' => ['required'],
-        'pages_number' => ['required'],
-        'book_height' => ['required'],
-        'peinter_number' => ['required'],
-        'subject' => ['required','max']
+        'subject' => ['required','max:255'],
     ];
 
-
     public function validation($validateData) {
-        $array = ['author','isbn','publishing_house','publishing_location','publishing_year'];
+        $array = ['printer_number','book_height','pages_number','author','isbn','publishing_house','publishing_location','publishing_year'];
         foreach($array as $el) {
             if(!empty($this->{$el})) {
-                $validateData = array_merge($validateData , ["'{$el}'" => $this->{$el}]);
+                $validateData = array_merge($validateData , ["{$el}" => $this->{$el}]);
             }
         }
         return $validateData;
@@ -57,12 +53,13 @@ class Edit extends Component
     public function edit() {
         $validateData = $this->validate();
         $validateData = $this->validation($validateData);
+        //dd($validateData);
         $this->book->update($validateData);
         session()->flash('message', "تم إتمام العملية بنجاح");
         return redirect()->route('admin.book.index');
     }
     public function render()
     {
-        return view('livewire.admin.book.edit');
+        return view('livewire.admin.books.edit');
     }
 }
