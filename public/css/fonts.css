@@ -1,0 +1,15 @@
+@font-face {
+    font-family: shamelBold;
+    src: url(../fonts/shamel/FFShamelFamily-SansOneBold.ttf);
+    line-height: 0.75;
+    vertical-align: middle;
+    padding: 14px 0;
+  }
+
+  @font-face {
+    font-family: shamelbook;
+    src: url(../fonts/shamel/FFShamelFamily-SansOneBook.ttf);
+    line-height: 0.75;
+    vertical-align: middle;
+    padding: 14px 0;
+  }
