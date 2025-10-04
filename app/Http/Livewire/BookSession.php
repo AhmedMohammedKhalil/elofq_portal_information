@@ -32,18 +32,16 @@ class BookSession extends Component
             'Thursday'   => 'الخميس',
             'Friday'     => 'الجمعة',
         ];
-        $this->type = $this->types[0];
 
         $this->departments = Department::all();
-        $department = Department::first();
-        $this->department_id = $department->id;
+        // $department = Department::first();
+        // $this->department_id = $department->id;
 
-        $this->teachers = $department->teachers;
-        $this->teacher_id = $department->teachers->first()?->id;
+        // $this->teachers = $department->teachers;
+        // $this->teacher_id = $department->teachers->first()?->id;
         $this->classes = Classes::all();
-        $this->class_id = Classes::first()->id;
-
-        $this->date = Carbon::today()->format('d-m-Y');
+        // $this->class_id = Classes::first()->id;
+        $this->date = Carbon::now()->format('Y-m-d');
         $this->day = $this->days[Carbon::parse($this->date)->dayName];
     }
 
@@ -55,7 +53,6 @@ class BookSession extends Component
         'teacher_id.gt' => 'يجب ان تختار المعلم',
         'class_id.gt' => 'يجب ان تختار الصف',
         'type.gt' => 'يجب ان تختار الحصة',
-        'date_format' => 'يحب ان يكون التاريخ على نفس الصيغة d-m-Y كمثال 01-01-2025',
         'after_or_equal' => 'يجب ان يكون التاريخ اكبر او يساوى تاريخ اليوم',
         'date' => 'يجب ان يكون الحقل تاريخ'
     ];
@@ -65,12 +62,12 @@ class BookSession extends Component
         'teacher_id' => ['required', 'gt:0'],
         'class_id' => ['required', 'gt:0'],
         'type' => ['required','not_in:0'],
-        'date' => ['date','date_format:d-m-Y','after_or_equal:today']
+        'date' => ['date','after_or_equal:today']
     ];
 
     public function updatedDate() {
         $validatedata = $this->validate(
-            ['date' => ['date','date_format:d-m-Y','after_or_equal:'.Carbon::today()->toDateString()]]
+            ['date' => ['date','after_or_equal:'.Carbon::today()->toDateString()]]
         );
         $this->day = $this->days[Carbon::parse($this->date)->dayName];
 
@@ -84,13 +81,12 @@ class BookSession extends Component
             ['department_id' => ['required','gt:0']]
         );
         $this->teachers = Teacher::where('department_id',$this->department_id)->get();
-        $this->teacher_id = Teacher::where('department_id',$this->department_id)->first()?->id;
     }
 
     public function bookSession() {
         $validatedata = $this->validate();
         $BookedSession = Session::where([
-            'date' => $this->date,
+            'date' => Carbon::parse($this->date)->format('d-m-Y'),
             'type' => $this->type
         ])->first();
 
@@ -100,7 +96,7 @@ class BookSession extends Component
             session()->flash('error', 'يوجد حصة فى المكتبة محجوزة حالياً');
         } else {
 
-            Session::create(array_merge($validatedata, ['day' => $this->day]));
+            Session::create(array_merge($validatedata, ['date' =>Carbon::parse($this->date)->format('d-m-Y') ,'day' => $this->day]));
             session()->flash('success', 'تم حجز الحصة بنجاح');
             $this->clear();
         }
@@ -128,18 +124,16 @@ class BookSession extends Component
             'Thursday'   => 'الخميس',
             'Friday'     => 'الجمعة',
         ];
-        $this->type = $this->types[0];
 
         $this->departments = Department::all();
-        $department = Department::first();
-        $this->department_id = $department->id;
+        // $department = Department::first();
+        // $this->department_id = $department->id;
 
-        $this->teachers = $department->teachers;
-        $this->teacher_id = $department->teachers->first()?->id;
+        // $this->teachers = $department->teachers;
+        // $this->teacher_id = $department->teachers->first()?->id;
         $this->classes = Classes::all();
-        $this->class_id = Classes::first()->id;
-
-        $this->date = Carbon::today()->format('d-m-Y');
+        // $this->class_id = Classes::first()->id;
+        $this->date = Carbon::now()->format('Y-m-d');
         $this->day = $this->days[Carbon::parse($this->date)->dayName];
     }
 

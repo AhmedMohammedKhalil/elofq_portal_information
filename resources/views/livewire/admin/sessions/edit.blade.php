@@ -30,9 +30,11 @@
                                             <div class="select-box">
                                                 <select class="form-control" name="teacher_id" wire:model.live='teacher_id'>
                                                     <option value="0" selected>إختر المعلم</option>
+                                                    @if($teachers != null)
                                                     @foreach ($teachers as $teacher)
                                                         <option value="{{ $teacher->id }}">{{ $teacher->name }}</option>
                                                     @endforeach
+                                                    @endif
                                                 </select>
                                             </div>
                                             @error('teacher_id')
@@ -77,8 +79,8 @@
                                     <div class="col-lg-12 col-sm-12">
                                         <div class="form-group">
                                             <label>التاريخ</label>
-                                            <input style="line-height: 4" class="form-control" type="text" name="date"
-                                                wire:model='date' id="date" placeholder="التاريخ" value="{{ $date }}"/>
+                                            <input style="line-height: 4" class="form-control" type="date" name="date"
+                                                wire:model.live='date' id="date" placeholder="التاريخ" value="{{ $date }}"/>
                                             @error('date')
                                                 <span class="text-danger error">{{ $message }}</span>
                                             @enderror

@@ -33,18 +33,12 @@ class Add extends Component
             'Thursday'   => 'الخميس',
             'Friday'     => 'الجمعة',
         ];
-        $this->type = $this->types[0];
 
         $this->departments = Department::all();
-        $department = Department::first();
-        $this->department_id = $department->id;
 
-        $this->teachers = $department->teachers;
-        $this->teacher_id = $department->teachers->first()?->id;
         $this->classes = Classes::all();
-        $this->class_id = Classes::first()->id;
 
-        $this->date = Carbon::today()->format('d-m-Y');
+        $this->date = Carbon::now()->format('Y-m-d');
         $this->day = $this->days[Carbon::parse($this->date)->dayName];
     }
 
@@ -66,12 +60,12 @@ class Add extends Component
         'teacher_id' => ['required', 'gt:0'],
         'class_id' => ['required', 'gt:0'],
         'type' => ['required','not_in:0'],
-        'date' => ['date','date_format:d-m-Y','after_or_equal:today']
+        'date' => ['date','after_or_equal:today']
     ];
 
     public function updatedDate() {
         $validatedata = $this->validate(
-            ['date' => ['date','date_format:d-m-Y','after_or_equal:'.Carbon::today()->toDateString()]]
+            ['date' => ['date','after_or_equal:'.Carbon::today()->toDateString()]]
         );
         $this->day = $this->days[Carbon::parse($this->date)->dayName];
     }
@@ -84,13 +78,12 @@ class Add extends Component
             ['department_id' => ['required','gt:0']]
         );
         $this->teachers = Teacher::where('department_id',$this->department_id)->get();
-        $this->teacher_id = Teacher::where('department_id',$this->department_id)->first()?->id;
     }
 
     public function add() {
         $validatedata = $this->validate();
         $BookedSession = Session::where([
-            'date' => $this->date,
+            'date' => Carbon::parse($this->date)->format('d-m-Y'),
             'type' => $this->type
         ])->first();
         if($this->day == 'الجمعة') {
@@ -99,7 +92,7 @@ class Add extends Component
             session()->flash('error', 'يوجد حصة فى المكتبة محجوزة حالياً');
         } else {
 
-            Session::create(array_merge($validatedata, ['day' => $this->day]));
+            Session::create(array_merge($validatedata, ['date' => Carbon::parse($this->date)->format('d-m-Y'),'day' => $this->day]));
             session()->flash('success', 'تم حجز الحصة بنجاح');
             return redirect()->route('admin.session.index');
         }

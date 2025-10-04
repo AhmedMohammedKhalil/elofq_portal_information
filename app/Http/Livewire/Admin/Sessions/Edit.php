@@ -47,7 +47,7 @@ class Edit extends Component
         $this->classes = Classes::all();
         $this->class_id = $this->session->class_id;
 
-        $this->date = $this->session->date;
+        $this->date = Carbon::parse($this->session->date)->format('Y-m-d');
         $this->day = $this->session->day;
     }
 
@@ -59,7 +59,6 @@ class Edit extends Component
         'teacher_id.gt' => 'يجب ان تختار المعلم',
         'class_id.gt' => 'يجب ان تختار الصف',
         'type.gt' => 'يجب ان تختار الحصة',
-        'date_format' => 'يحب ان يكون التاريخ على نفس الصيغة d-m-Y كمثال 01-01-2025',
         'after_or_equal' => 'يجب ان يكون التاريخ اكبر او يساوى تاريخ اليوم',
         'date' => 'يجب ان يكون الحقل تاريخ'
     ];
@@ -69,13 +68,13 @@ class Edit extends Component
         'teacher_id' => ['required', 'gt:0'],
         'class_id' => ['required', 'gt:0'],
         'type' => ['required','not_in:0'],
-        'date' => ['date','date_format:d-m-Y']
+        'date' => ['date']
     ];
 
     public function updatedDate() {
         if($this->date != $this->session->date) {
             $validatedata = $this->validate(
-            ['date' => ['date','date_format:d-m-Y','after_or_equal:'.Carbon::today()->toDateString()]]
+            ['date' => ['date','after_or_equal:'.Carbon::today()->toDateString()]]
         );
             $this->day = $this->days[Carbon::parse($this->date)->dayName];
         }
@@ -91,7 +90,6 @@ class Edit extends Component
             ['department_id' => ['required','gt:0']]
         );
         $this->teachers = Teacher::where('department_id',$this->department_id)->get();
-        $this->teacher_id = Teacher::where('department_id',$this->department_id)->first()?->id;
     }
 
     public function edit() {
@@ -100,7 +98,7 @@ class Edit extends Component
 
 
         $BookedSession = Session::where('id','!=',$this->session_id)->where([
-            'date' => $this->date,
+            'date' => Carbon::parse($this->date)->format('d-m-Y'),
             'type' => $this->type,
         ])->first();
         if($this->day == 'الجمعة') {
@@ -108,7 +106,7 @@ class Edit extends Component
         }elseif($BookedSession != null) {
             session()->flash('error', 'يوجد حصة فى المكتبة محجوزة حالياً');
         } else {
-            $this->session->update(array_merge($validatedata, ['day' => $this->day]));
+            $this->session->update(array_merge($validatedata, ['date' => Carbon::parse($this->date)->format('d-m-Y'),'day' => $this->day]));
             session()->flash('success', 'تم تغيير حجز الحصة بنجاح');
             return redirect()->route('admin.session.index');
         }
