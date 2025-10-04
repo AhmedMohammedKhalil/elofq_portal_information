@@ -9,4 +9,14 @@
         </div>
     </div>
 
+    @if(count($departments) > 0 && count($classes) > 0  && count($teachers) > 0 )
+    <section class="banner-area-two pt-100 pb-70" style="background: white">
+        <div class="section-title">
+            <h2>حجز حصص دراسية</h2>
+            <img src="{{ asset('img/section-title-shape.png') }}" alt="Image" />
+        </div>
+            <livewire:book-session />
+    </section>
+    @endif
+
 @endsection

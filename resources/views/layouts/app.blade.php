@@ -37,7 +37,7 @@
 
     <link rel="stylesheet" href="{{ asset('css/rtl.css') }}" />
 
-    {{-- <link rel="icon" type="image/png" href="{{ asset('img/favicon.png') }}" /> --}}
+    <link rel="icon" type="image/png" href="{{ asset('img/library_logo.jpg') }}" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
         integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -53,6 +53,10 @@
         * {
             font-size: 20px !important;
             font-family: 'shamelBook'
+        }
+
+        .sidebar-widget.categories::before{
+            content: none;
         }
 
 
@@ -71,7 +75,8 @@
         }
 
         .navbar-area .main-nav nav .navbar-nav .nav-item a{
-            padding: 15px 0 !important;
+            padding: 15px !important;
+            margin: 0 !important
         }
 
         .dropdown-menu .nav-item .nav-link{
@@ -176,6 +181,14 @@
 
         }
 
+        .page-title-area .page-title-content h2 {
+            font-size: 28px !important
+        }
+
+        .banner-content h1{
+            font-size: 55px !important
+        }
+
         @media only screen and (max-width: 991px) {
             .page-title-area, .feedback-area{
                 margin-top: 70px !important
@@ -206,7 +219,7 @@
 
         <div class="mobile-nav">
             <a href="{{ route('home') }}" class="logo" style="top:11px">
-                <img style="height: 50px;width:70px" src="{{ asset('img/logo2.jpg') }}" class="main-logo" alt="Logo" />
+                <img style="height: 50px;width:70px" src="{{ asset('img/library_logo.jpg') }}" class="main-logo" alt="Logo" />
             </a>
         </div>
         <div class="main-nav">
@@ -214,18 +227,18 @@
                 <nav class="navbar navbar-expand-md">
 
                     <a class="navbar-brand" href="{{ route('home') }}" style="max-width: 130px">
-                        <img style="height: 80px;width:100px" src="{{ asset('img/logo2.jpg') }}" class="main-logo" alt="Logo" />
+                        <img style="height: 80px;width:100px" src="{{ asset('img/logo2.jpg') }}" class="second-logo" alt="Logo" />
                     </a>
 
                     <div class="collapse navbar-collapse m-auto flex-column">
 
                         <h1>مكتبة إبن حجر العسقلاني</h1>
-                        <h1>أ.نورة فهد العجمى</h1>
+                        <h1>أ.نورة فهد العجمي</h1>
 
                     </div>
 
                     <a class="navbar-brand" href="{{ route('home') }}" style="max-width: 130px">
-                        <img style="height: 80px;width:100px" src="{{ asset('img/logo2.jpg') }}" class="main-logo" alt="Logo" />
+                        <img style="height: 80px;width:100px" src="{{ asset('img/library_logo.jpg') }}" class="main-logo" alt="Logo" />
                     </a>
                 </nav>
             </div>

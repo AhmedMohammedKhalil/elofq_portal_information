@@ -1,0 +1,92 @@
+@push('css')
+    <style>
+
+
+        .sting{
+                background-color: transparent;
+                border: unset;
+        }
+        .stingform{
+            display:inline-block;
+        }
+    </style>
+@endpush
+
+@extends('admins.layout',['page_name'=> 'إدارة الصفوف' ])
+
+
+@section('section')
+<div class="instructor-content">
+
+    <section class="cart-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="cart-wraps">
+                        <div class="coupon-cart">
+                            <div class="row">
+                                <div class="col-lg-4 col-sm-5 offset-lg-4 text-center">
+                                    <a href="{{ route('admin.class.create') }}" class="default-btn update mx-auto">
+                                        اضف فصل جديد
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="cart-table table-responsive mt-4">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">الصف</th>
+                                        <th scope="col">الاعدادات</th>
+
+                                    </tr>
+                                </thead>
+                                @if (count($classes) > 0)
+                                    <tbody>
+                                        @foreach ($classes as $class)
+                                            <tr>
+
+                                                <td class="product-name">
+                                                    <a href="javascript:void(0)">{{ $class->id }}</a>
+                                                </td>
+
+                                                <td class="product-name">
+                                                    <a href="javascript:void(0)">{{ $class->title }}</a>
+                                                </td>
+                                                <td class="product-subtotal">
+
+                                                    <div class="row">
+                                                        <div class="col-6">
+                                                            <a title="تعديل" href="{{ route('admin.class.edit', ['id'=>$class->id]) }}">
+                                                                <i class="fa-solid fa-pen-to-square"></i>
+                                                            </a>
+                                                        </div>
+                                                        @if(count($class->sessions) == 0)
+                                                        <div class="col-6">
+                                                            <form class="stingform" action="{{route('admin.class.delete',['id'=>$class->id])}}" method="post">
+                                                                @csrf
+                                                                @method('delete')
+                                                                <button class="sting" type="submit" title="حذف" style="float:unset;font-size:20px">
+                                                                    <i class='bx bx-trash'></i>
+                                                                </button>
+                                                            </form>
+                                                        </div>
+                                                        @endif
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                @endif
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+@endsection

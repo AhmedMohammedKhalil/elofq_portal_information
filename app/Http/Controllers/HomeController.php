@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Abouts;
-use App\Models\Service;
 use App\Models\Book;
+use App\Models\Abouts;
+use App\Models\Classes;
+use App\Models\Service;
 use App\Models\Sliders;
+use App\Models\Department;
+use App\Models\Teacher;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -48,7 +51,10 @@ class HomeController extends Controller
 
     public function services()
     {
-        return view('services');
+        $departments = Department::all();
+        $classes = Classes::all();
+        $teachers = Teacher::all();
+        return view('services',get_defined_vars());
     }
 
 

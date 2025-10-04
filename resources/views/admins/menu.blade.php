@@ -9,6 +9,22 @@
             </li>
 
             <li>
+                <a href="{{ route('admin.class.index') }}">إدارة الصفوف</a>
+            </li>
+
+            <li>
+                <a href="{{ route('admin.department.index') }}">إدارة الأقسام</a>
+            </li>
+
+            <li>
+                <a href="{{ route('admin.teacher.index') }}">إدارة المعلمين</a>
+            </li>
+
+            <li>
+                <a href="{{ route('admin.session.index') }}">إدارة الحصص</a>
+            </li>
+
+            <li>
                 <a href="{{ route('admin.about.index') }}">إدارة من نحن</a>
             </li>
 

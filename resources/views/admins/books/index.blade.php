@@ -91,11 +91,14 @@
                                                 </td>
                                             </tr>
                                         @endforeach
+
                                     </tbody>
                                 @endif
                             </table>
-
                         </div>
+                        {{-- @if(count($books) > 0)
+                            {!! $books->links('pagination::bootstrap-4') !!}
+                        @endif --}}
                     </div>
                 </div>
             </div>
